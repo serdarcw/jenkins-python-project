@@ -42,10 +42,10 @@ pipeline{
         }
         stage('build'){
             agent any
-                steps{
-                    sh "docker build -t serdarcw/deneme ."
-                    sh "docker tag serdarcw/deneme:latest 080546698688.dkr.ecr.us-east-1.amazonaws.com/serdarcw/deneme:latest"
-                }
+            steps{
+                sh "docker build -t matt/handson-jenkins ."
+                sh "docker tag matt/handson-jenkins:latest 080546698688.dkr.ecr.us-east-1.amazonaws.com/matt/handson-jenkins:latest"
             }
+        } 
     }
 }
