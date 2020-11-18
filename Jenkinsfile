@@ -30,7 +30,7 @@ pipeline{
             }
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh 'python -m pytest -v --junit-xml         results.xml src/appTest.py'
+                    sh 'python -m pytest -v --junit-xml results.xml src/appTest.py'
                 }
             }
             post {
@@ -43,7 +43,7 @@ pipeline{
             agent any
                 steps{
                     sh "docker build -t serdarcw/deneme ."
-                    sh "docker tag 080546698688.dkr.ecr.us-east-1.amazonaws.com/serdarcw/deneme:latest"
+                    sh "docker tag serdarcw/deneme:latest 080546698688.dkr.ecr.us-east-1.amazonaws.com/serdarcw/deneme:latest"
                 }
             }
     }
