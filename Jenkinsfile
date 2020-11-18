@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment {
-        MYSQL_DATABASE_HOST = "database-1.cuxdz3m00nkr.us-east-1.rds.amazonaws.com"
+        MYSQL_DATABASE_HOST = "database-42.cbanmzptkrzf.us-east-1.rds.amazonaws.com"
         MYSQL_DATABASE_PASSWORD = "Clarusway"
         MYSQL_DATABASE_USER = "admin"
         MYSQL_DATABASE_DB = "phonebook"
@@ -23,6 +23,7 @@ pipeline{
                 }   
             }
         }
+
         stage('test') {
             agent {
                 docker {
@@ -40,12 +41,28 @@ pipeline{
                 }
             }
         }
+
         stage('build'){
             agent any
             steps{
                 sh "docker build -t matt/handson-jenkins ."
                 sh "docker tag matt/handson-jenkins:latest 080546698688.dkr.ecr.us-east-1.amazonaws.com/matt/handson-jenkins:latest"
             }
-        } 
+        }
+        stage('push'){
+            agent any
+            steps{
+                sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 080546698688.dkr.ecr.us-east-1.amazonaws.com"
+                sh "docker push 080546698688.dkr.ecr.us-east-1.amazonaws.com/matt/handson-jenkins:latest"
+            }
+        }
+
+        stage('compose'){
+            agent any
+            steps{
+                sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 080546698688.dkr.ecr.us-east-1.amazonaws.com"
+                sh "docker-compose up -d"
+            }
+        }
     }
 }
