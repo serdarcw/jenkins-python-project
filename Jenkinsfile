@@ -39,5 +39,12 @@ pipeline{
                 }
             }
         }
+        stage('build'){
+            agent any
+                steps{
+                    sh "docker build -t serdarcw/deneme ."
+                    sh "docker tag 080546698688.dkr.ecr.us-east-1.amazonaws.com/serdarcw/deneme:latest"
+                }
+            }
     }
 }
