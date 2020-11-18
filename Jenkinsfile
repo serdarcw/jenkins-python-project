@@ -1,8 +1,7 @@
 pipeline{
     agent any
     environment {
-        MYSQL_DATABASE_HOST = "database-1.cuxdz3m00nkr.us-east-1.rds.amazonaws.com
-"
+        MYSQL_DATABASE_HOST = "database-1.cuxdz3m00nkr.us-east-1.rds.amazonaws.com"
         MYSQL_DATABASE_PASSWORD = "Clarusway"
         MYSQL_DATABASE_USER = "admin"
         MYSQL_DATABASE_DB = "phonebook"
