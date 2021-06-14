@@ -39,7 +39,7 @@ def insert_mock_name(name, number):
 # and returns text info about result of the operation
 def insert_person(name, number):
     query = f"""
-    SELECT * FROM phonebook WHERE name like '{name.strip().lower()}';
+    SELECT * FROM phonebook.phonebook WHERE name like '{name.strip().lower()}';
     """
 
     cursor.execute(query)
