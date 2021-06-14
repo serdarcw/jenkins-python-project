@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Configure mysql database
 app.config['MYSQL_DATABASE_HOST'] =  "ecr-docker-jenkins-rds.cbanmzptkrzf.us-east-1.rds.amazonaws.com" #os.getenv('MYSQL_DATABASE_HOST') 
-app.config['MYSQL_DATABASE_PASSWORD'] =  os.getenv('MYSQL_DATABASE_PASSWORD')  # "Clarusway"
+app.config['MYSQL_DATABASE_PASSWORD'] =  "Clarusway" #os.getenv('MYSQL_DATABASE_PASSWORD')  # "Clarusway"
 app.config['MYSQL_DATABASE_USER'] = os.getenv('MYSQL_DATABASE_USER')  # "admin"
 app.config['MYSQL_DATABASE_DB'] =  os.getenv('MYSQL_DATABASE_DB')  # "phonebook"
 app.config['MYSQL_DATABASE_PORT'] = int(os.getenv('MYSQL_DATABASE_PORT'))  # 3306
