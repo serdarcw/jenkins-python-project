@@ -8,9 +8,9 @@ app = Flask(__name__)
 
 # Configure mysql database
 app.config['MYSQL_DATABASE_HOST'] =  os.getenv('MYSQL_DATABASE_HOST')  # "database-42.cbanmzptkrzf.us-east-1.rds.amazonaws.com"
-app.config['MYSQL_DATABASE_PASSWORD'] =  os.getenv('MYSQL_DATABASE_PASSWORD')  # "Clarusway"
-app.config['MYSQL_DATABASE_USER'] = os.getenv('MYSQL_DATABASE_USER')  # "admin"
-app.config['MYSQL_DATABASE_DB'] =  os.getenv('MYSQL_DATABASE_DB')  # "phonebook"
+app.config['MYSQL_DATABASE_PASSWORD'] = os.getenv('MYSQL_DATABASE_PASSWORD')  # "Clarusway"
+app.config['MYSQL_DATABASE_USER'] = os.getenv('MYSQL_DATABASE_USER')  # 'admin'
+app.config['MYSQL_DATABASE_DB'] = os.getenv('MYSQL_DATABASE_DB')  # "phonebook"
 app.config['MYSQL_DATABASE_PORT'] = int(os.getenv('MYSQL_DATABASE_PORT'))  # 3306
 mysql = MySQL()
 mysql.init_app(app) 
@@ -22,7 +22,7 @@ cursor = connection.cursor()
 # Create P table within sqlite db.
 def init_phonebook_db():
     phonebook_table = """
-    CREATE TABLE IF NOT EXISTS phonebook.phonebook (
+    CREATE TABLE IF NOT EXISTS phonebook.phonebook(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     number VARCHAR(100) NOT NULL,
@@ -161,4 +161,4 @@ def find_records():
 if __name__== '__main__':
     init_phonebook_db()
     #app.run(debug=True)
-    app.run(host='0.0.0.0', port=80) 
+    app.run(host='0.0.0.0', port=80)
