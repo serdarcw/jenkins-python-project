@@ -7,8 +7,8 @@ import os
 app = Flask(__name__)
 
 # Configure mysql database
-app.config['MYSQL_DATABASE_HOST'] =  "ecr-docker-jenkins-rds.cbanmzptkrzf.us-east-1.rds.amazonaws.com" #os.getenv('MYSQL_DATABASE_HOST') 
-app.config['MYSQL_DATABASE_PASSWORD'] =  "Clarusway" #os.getenv('MYSQL_DATABASE_PASSWORD')  # "Clarusway"
+app.config['MYSQL_DATABASE_HOST'] =  os.getenv('MYSQL_DATABASE_HOST')  # "database-42.cbanmzptkrzf.us-east-1.rds.amazonaws.com"
+app.config['MYSQL_DATABASE_PASSWORD'] =  os.getenv('MYSQL_DATABASE_PASSWORD')  # "Clarusway"
 app.config['MYSQL_DATABASE_USER'] = os.getenv('MYSQL_DATABASE_USER')  # "admin"
 app.config['MYSQL_DATABASE_DB'] =  os.getenv('MYSQL_DATABASE_DB')  # "phonebook"
 app.config['MYSQL_DATABASE_PORT'] = int(os.getenv('MYSQL_DATABASE_PORT'))  # 3306
@@ -22,7 +22,7 @@ cursor = connection.cursor()
 # Create P table within sqlite db.
 def init_phonebook_db():
     phonebook_table = """
-    CREATE TABLE IF NOT EXISTS phonebook.phonebook(
+    CREATE TABLE IF NOT EXISTS phonebook.phonebook (
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     number VARCHAR(100) NOT NULL,
