@@ -9,7 +9,7 @@ pipeline{
         PATH="/usr/local/bin/:${env.PATH}"
     }
     stages{
-        stage("compile"){
+        stage("compiled"){
             agent{
                 docker{
                     image 'python:alpine'
